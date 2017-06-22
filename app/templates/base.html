@@ -49,6 +49,10 @@
     </nav>
     {%endblock%}
     {%block content%}
+    <div class="container">
+        {% block pagecontent %}
+        {% endblock %}
+    </div>
     {% endblock %}
 
     {% block footer %}
