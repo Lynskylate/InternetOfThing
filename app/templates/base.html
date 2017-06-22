@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    {% block head %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>Starter Template - Materialize</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="../static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" /> {%endblock%}
+</head>
+
+{% block body %}
+<body>
+    {% block navbar %}
+
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo center">智能家居</a>
+            <ul class="left hide-on-med-and-down">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">介绍</a></li>
+                <li><a href="#">管理</a></li>
+            </ul>
+
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">登录</a></li>
+            </ul>
+            <ul id="nav-mobile" class="side-nav">
+                <li>
+                    <div class="userView">
+                        <div class="background">
+                            <img src="../static/images/office.jpg">
+                        </div>
+                        <a href="#"><img class="circle" src="../static/images/figurehead.png"></a>
+                        <a href="#!name"><span class="white-text name">未登录</span></a>
+                        <a href="#"><span class="white-text email"></span></a>
+                    </div>
+                </li>
+
+                <li><a href="#">首页</a></li>
+                <li><a href="#">介绍</a></li>
+                <li><a href="#">管理</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    {%endblock%}
+    {%block content%}
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="../static/js/materialize.js"></script>
+    <script src="../static/js/init.js"></script>
+
+</body>
+{% endblock %}
+
+</html>
