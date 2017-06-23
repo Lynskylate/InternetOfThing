@@ -18,15 +18,20 @@
     {% block navbar %}
 
     <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo center">智能家居</a>
+        <div class="nav-wrapper container"><a id="logo-container" href="{{url_for('index')}}" class="brand-logo center">智能家居</a>
             <ul class="left hide-on-med-and-down">
-                <li><a href="#">首页</a></li>
+                <li><a href="{{url_for('index')}}">首页</a></li>
                 <li><a href="#">介绍</a></li>
                 <li><a href="#">管理</a></li>
             </ul>
 
             <ul class="right hide-on-med-and-down">
-                <li><a href="#">登录</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a href="{{url_for('logout')}}">注销</a></li>
+                {% else %}
+                <li><a href="{{url_for('login')}}">登录</a></li>
+                <li><a href="{{url_for("register")}}">注册</a></li>
+                {% endif %}
             </ul>
             <ul id="nav-mobile" class="side-nav">
                 <li>
@@ -35,12 +40,12 @@
                             <img src="../static/images/office.jpg">
                         </div>
                         <a href="#"><img class="circle" src="../static/images/figurehead.png"></a>
-                        <a href="#!name"><span class="white-text name">未登录</span></a>
+                        <a href="{{ url_for('login') }}"><span class="white-text name">未登录</span></a>
                         <a href="#"><span class="white-text email"></span></a>
                     </div>
                 </li>
 
-                <li><a href="#">首页</a></li>
+                <li><a href="{{url_for('index')}}">首页</a></li>
                 <li><a href="#">介绍</a></li>
                 <li><a href="#">管理</a></li>
             </ul>
@@ -50,6 +55,20 @@
     {%endblock%}
     {%block content%}
     <div class="container">
+        {% block alert %}
+        {% with messages = get_flashed_messages() %} 
+        {% if messages %} 
+        <div class="row">
+        {% for message in messages %}
+        <div class="chip col s12 teal accent-2">
+        {{message}}
+        <i class="close material-icons">close</i>
+        </div>
+        {% endfor %} 
+        </div>
+        {% endif %} 
+        {% endwith %}
+        {% endblock %}
         {% block pagecontent %}
         {% endblock %}
     </div>

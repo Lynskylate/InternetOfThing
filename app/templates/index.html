@@ -1,5 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container">
+    {% with messages = get_flashed_messages() %} 
+    {% if messages %} 
+    <div class="row">
+    {% for message in messages %}
+    <div class="chip col s12 teal accent-2">
+      {{message}}
+      <i class="close material-icons">close</i>
+    </div>
+    {% endfor %} 
+    </div>
+    {% endif %} 
+    {% endwith %}
+</div>
 <div class="section no-pad-bot" id="index-banner">
   <div class="container">
     <br><br>

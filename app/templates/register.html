@@ -4,19 +4,19 @@
 {% block pagecontent %}
     <div class="section"></div>
     <h3>开始管理你的设备</h3>
-    <form method="POST" action="/login">
+    <form method="POST" action="/register">
     {{ form.csrf_token}}
     <div class="input-field">
-    <p>{{ form.email.label}}{{form.email}}</p>
+    <p>{{ form.email.label}}{{form.email(type="email")}}</p>
     </div>
     <div class="input-field">
     <p>{{form.username.label}}{{form.username}}</p>
     </div>
     <div class="input-field">
-    <p>{{form.password.label}}{{form.password}}</p>
+    <p>{{form.password.label}}{{form.password(type="password")}}</p>
     </div>
     <div class="input-field">
-    <p>{{form.password2.label}}{{form.password2}}</p>
+    <p>{{form.password2.label}}{{form.password2(type="password")}}</p>
     </div>
     <p>{{form.submit(class="btn")}}</p>
     </form>
