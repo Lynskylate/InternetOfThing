@@ -14,6 +14,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), unique=True)
     username = db.Column(db.String(64), unique=True)
     password_hash = db.Column(db.String(128))
+    sensors = db.relationship("Sensor", backref="user", lazy="dynamic")
 
     @property
     def password(self):
@@ -28,3 +29,24 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return "<User {}: Email:{}>".format(self.username, self.email)
+
+
+class Sensor(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    sensor_datas = db.relationship(
+        "Sensordata", backref="sensor", lazy="dynamic")
+
+    def __repr__(self):
+        return "<Sensor {}>".format(self.name)
+
+
+class Sensordata(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sensor_id = db.Column(db.Integer, db.ForeignKey("sensor.id"))
+    sensorfield = db.Column(db.String(64))
+    data = db.Column(db.String(64))
+
+    def __repr__(self):
+        return "<Sensordata {}: {}>".format(self.sensorfield, self.data)
