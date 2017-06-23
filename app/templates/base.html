@@ -27,6 +27,7 @@
 
             <ul class="right hide-on-med-and-down">
                 {% if current_user.is_authenticated %}
+                <li><a href="#">{{ current_user.username}}</a></li>
                 <li><a href="{{url_for('logout')}}">注销</a></li>
                 {% else %}
                 <li><a href="{{url_for('login')}}">登录</a></li>

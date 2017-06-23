@@ -3,6 +3,9 @@ from app import app, db
 from .models import User
 from .forms import LoginForm, RegisteForm
 from flask_login import login_required, login_user, current_user, logout_user
+from .api import api
+
+app.register_blueprint(api, url_prefix="/api/")
 
 
 @app.route("/")

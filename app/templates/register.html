@@ -3,11 +3,16 @@
 
 {% block pagecontent %}
     <div class="section"></div>
-    <h3>开始管理你的设备</h3>
+    <div class="card-panel">
     <form method="POST" action="/register">
+    <h3 class="center">开始管理你的设备</h3>
     {{ form.csrf_token}}
     <div class="input-field">
-    <p>{{ form.email.label}}{{form.email(type="email")}}</p>
+        {% if form.email.errors %}
+            <p>{{ form.email.label}}{{form.email(type="email",class="validate invalid")}}</p>
+        {% else %}
+            <p>{{ form.email.label}}{{form.email(type="email")}}</p>
+        {% endif %}
     </div>
     <div class="input-field">
     <p>{{form.username.label}}{{form.username}}</p>
@@ -18,6 +23,14 @@
     <div class="input-field">
     <p>{{form.password2.label}}{{form.password2(type="password")}}</p>
     </div>
-    <p>{{form.submit(class="btn")}}</p>
+    <div class="row">
+        <div class="col s-6 offset-s5">
+        <p class="medium-small"><a href="{{url_for('login')}}">已有账户？登录你的帐号</a></p>
+        </div>
+    </div>
+    <div class="row">
+    <p>{{form.submit(class="btn col s12")}}</p>
+    </div>
     </form>
+    </div>
 {% endblock %}

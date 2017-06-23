@@ -3,15 +3,41 @@
 
 {% block pagecontent %}
 <div class="section"></div>
-<h3>继续管理你的设备</h3>
+<div class="card-panel">
 <form method="POST" action="/login">
+  <h3 class="center">继续管理你的设备</h3>
   {{ form.csrf_token}}
   <div class="input-field">
-    <p>{{ form.email.label}}{{form.email(type="email",class="validate")}}</p>
+    {% if form.email.errors %}
+        <p>{{ form.email.label}}{{form.email(type="email",class="validate invalid")}}</p>
+    {% else %}
+        <p>{{ form.email.label}}{{form.email(type="email")}}</p>
+    {% endif %}
   </div>
   <div class="input-field">
-    <p>{{form.password.label}}{{form.password}}</p>
+    {% if form.password.errors %}
+      <p>{{ form.password.label}}{{form.password(type="password",class="validate invalid")}}</p>
+    {% else %}
+      <p>{{form.password.label}}{{form.password}}</p>
+    {% endif %}
   </div>
-  <p>{{form.submit(class="btn")}}</p>
+  <div class="row">
+  <div>
+    <p>{{form.remember_me}}
+      <label for="{{form.remember_me.label.field_id}}">{{form.remember_me.label.text}}</label>
+      <input type="hidden" for="{{form.remember_me.label.field_id}}"value="n"></p>
+  </div>
+  </div>
+    <div class="row">
+        <div class="col s-6 offset-s4">
+        <p class="medium-small"><a href="{{url_for('register')}}">还没有账户？注册你的帐号，开始物联网之旅吧！</a></p>
+        </div>
+    </div>
+  <div class="row">
+    <div class="input-field">  
+    <p>{{form.submit(class="btn col s12")}}</p>
+    </div>
+  </div>
 </form>
+</div>
 {% endblock %}
